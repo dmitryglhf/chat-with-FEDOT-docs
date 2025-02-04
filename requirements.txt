@@ -1,6 +1,6 @@
 streamlit
-openai
 llama-index
-llama-index-llms-openai
+llama-index-llms-gemini
 nltk
 pypdf
+google-generativeai
