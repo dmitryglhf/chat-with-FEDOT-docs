@@ -15,3 +15,8 @@ It provides automatic generative design of machine learning pipelines for variou
 ## Try out app!
 
 [Click!](https://chat-with-fedot-docs.streamlit.app/)
+
+## TODO
+
+- [ ] Convert .rst to .md
+- [ ] Remove .png
