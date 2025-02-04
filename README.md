@@ -19,4 +19,4 @@ It provides automatic generative design of machine learning pipelines for variou
 
 ## Try out app!
 
-url...
+[Click!](https://chat-with-fedot-docs.streamlit.app/)
