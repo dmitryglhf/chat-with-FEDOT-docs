@@ -3,6 +3,7 @@ import streamlit as st
 import google.generativeai as genai
 from llama_index.llms.gemini import Gemini
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 
 
 st.set_page_config(
@@ -36,6 +37,7 @@ SYS_PROMPT = """You are an expert on
         It is preferable to present code examples."""
 
 
+@st.cache_resource(show_spinner=False)
 def load_data():
     reader = SimpleDirectoryReader(input_dir="./data", recursive=True)
     docs = reader.load_data()
@@ -45,6 +47,7 @@ def load_data():
         api_key=st.secrets.genai_key,
         system_prompt=SYS_PROMPT,
     )
+    Settings.embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
     index = VectorStoreIndex.from_documents(docs)
     return index
 

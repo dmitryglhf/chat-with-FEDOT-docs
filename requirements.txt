@@ -4,3 +4,4 @@ llama-index-llms-gemini
 nltk
 pypdf
 google-generativeai
+llama-index-embeddings-huggingface
