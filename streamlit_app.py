@@ -1,7 +1,6 @@
 import os
 import streamlit as st
 import google.generativeai as genai
-from llama_index.core.chat_engine import SimpleChatEngine
 from llama_index.llms.gemini import Gemini
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 
@@ -27,6 +26,14 @@ if "messages" not in st.session_state.keys():  # Initialize the chat messages hi
         }
     ]
 
+SYS_PROMPT = """You are an expert on 
+        the FEDOT Python Framework and your 
+        job is to answer technical questions. 
+        Assume that all questions are related 
+        to the FEDOT Python library. Keep 
+        your answers technical and based on 
+        facts – do not hallucinate features.
+        It is preferable to present code examples."""
 
 @st.cache_resource(show_spinner=False)
 def load_data():
@@ -36,14 +43,7 @@ def load_data():
     Settings.llm = Gemini(
         model="models/gemini-1.5-flash",
         api_key=st.secrets.genai_key,
-        system_prompt="""You are an expert on 
-        the FEDOT Python Framework and your 
-        job is to answer technical questions. 
-        Assume that all questions are related 
-        to the FEDOT Python library. Keep 
-        your answers technical and based on 
-        facts – do not hallucinate features.
-        It is preferable to present code examples.""",
+        system_prompt=SYS_PROMPT,
     )
     index = VectorStoreIndex.from_documents(docs)
     return index
@@ -53,9 +53,11 @@ index = load_data()
 
 if "chat_engine" not in st.session_state.keys():  # Initialize the chat engine
     st.session_state.chat_engine = index.as_chat_engine(
+        chat_mode="context",
         verbose=True,
         streaming=True,
-        llm=Settings.llm
+        llm=Settings.llm,
+        systemp_prompt=SYS_PROMPT
     )
 
 if prompt := st.chat_input(
