@@ -10,7 +10,8 @@ st.set_page_config(
     page_title="FEDOT Docs",
     layout="centered",
     initial_sidebar_state="auto",
-    menu_items=None
+    menu_items=None,
+    page_icon='icon.png'
 )
 
 GOOGLE_API_KEY = st.secrets.genai_key
