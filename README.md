@@ -16,3 +16,7 @@ It provides automatic generative design of machine learning pipelines for variou
 
 [chat-with-fedot-docs.app](https://chat-with-fedot-docs.streamlit.app/)
 
+## TODO
+
+- [ ] Everything to markdown
+- [ ] Add code examples 
