@@ -35,7 +35,7 @@ SYS_PROMPT = """You are an expert on
         facts – do not hallucinate features.
         It is preferable to present code examples."""
 
-@st.cache_resource(show_spinner=False)
+
 def load_data():
     reader = SimpleDirectoryReader(input_dir="./data", recursive=True)
     docs = reader.load_data()
