@@ -12,12 +12,7 @@ FEDOT is an open-source framework for automated modeling and machine learning (A
 
 It provides automatic generative design of machine learning pipelines for various real-world problems. The core of FEDOT is based on an evolutionary approach and supports classification (binary and multiclass), regression, clustering, and time series prediction problems.
 
-## Try out app!
+## Try it out!
 
-[Click!](https://chat-with-fedot-docs.streamlit.app/)
+[chat-with-fedot-docs.app](https://chat-with-fedot-docs.streamlit.app/)
 
-## TODO
-
-- [ ] ValueError api_key openai
-- [ ] Convert .rst to .md
-- [ ] Remove .png
