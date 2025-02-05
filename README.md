@@ -18,5 +18,6 @@ It provides automatic generative design of machine learning pipelines for variou
 
 ## TODO
 
+- [ ] ValueError api_key openai
 - [ ] Convert .rst to .md
 - [ ] Remove .png
