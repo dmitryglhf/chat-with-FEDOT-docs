@@ -25,6 +25,7 @@ It provides automatic generative design of machine learning pipelines for variou
 ***
 
 # FEDOT cheat sheet
+[click me to download](https://github.com/dmitryglhf/chat-with-FEDOT-docs/blob/main/fedot-cheatsheet.pdf)
 
 ## Quick Start
 ```python
