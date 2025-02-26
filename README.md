@@ -79,6 +79,7 @@ model = Fedot(
     problem='classification',
     preset='best_quality',  # Options: 'fast', 'stable', 'best_quality', etc.
     timeout=5,  # Minutes for optimization
+    with_tuning=True  # Allow tuning mode
     n_jobs=-1,  # CPU cores to use (-1 = all)
     cv_folds=5,  # Cross-validation folds
     random_state=42  # Random seed
