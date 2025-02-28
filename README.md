@@ -82,21 +82,12 @@ model = Fedot(
     with_tuning=True,  # Allow tuning mode
     n_jobs=-1,  # CPU cores to use (-1 = all)
     cv_folds=5,  # Cross-validation folds
-    random_state=42  # Random seed
-    metric=["accuracy"]  # Set metrics to optimize
-    initial_assumption=PipelineBuilder().add_node('catboost', params={"iterations": 10000}).build()  # Set new initial assumption
+    seed=42,  # Random seed
+    metric=["accuracy"],  # Set metrics to optimize
+    initial_assumption=PipelineBuilder() \
+    .add_node('catboost', params={"iterations": 10000}).build(),  # Set new initial assumption
 )
 
-# Custom optimization settings
-composer_params = {
-    'max_depth': 5,
-    'max_arity': 3,
-    'pop_size': 20,
-    'num_of_generations': 20,
-    'crossover_prob': 0.8,
-    'mutation_prob': 0.8
-}
-model = Fedot(composer_params=composer_params)
 ```
 
 ## Common Patterns / Recipes
