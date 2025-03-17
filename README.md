@@ -74,6 +74,7 @@ You can image it like this:
 | `predict_proba()` | Predict probabilities | `probas = model.predict_proba(features=X_test)` |
 | `save()` | Save the model | `model.save('model.pkl')` |
 | `load()` | Load a saved model | `model = Fedot.load('model.pkl')` |
+| `get_metrics()` | Print a metrics | `model.get_metrics(y_test)` |
 
 ### Manual Pipeline Construction
 | Method | Description | Example |
@@ -84,6 +85,15 @@ You can image it like this:
 | `add_edge()` | Connect nodes | `pipeline.add_edge(node_from, node_to)` |
 | `fit()` | Train pipeline | `pipeline.fit(input_data=train_data)` |
 | `predict()` | Get predictions | `predictions = pipeline.predict(input_data=test_data)` |
+
+Finally, you should `.build()` pipeline to use it as model. For example:
+```python
+pipeline = PipelineBuilder().add_node('scaling').add_node('xgboost').build()
+```
+Also, you can plot your custom pipeline:
+```python
+pipeline.show()
+```
 
 ## Configuration Options
 ```python
