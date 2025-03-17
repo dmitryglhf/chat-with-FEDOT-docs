@@ -39,6 +39,28 @@ model.fit(features=X_train, target=y_train)
 prediction = model.predict(features=X_test)
 ```
 
+## Configuration Options
+```python
+from fedot.api.main import Fedot
+from fedot.core.pipelines.pipeline_builder import PipelineBuilder
+
+
+# Configuring FEDOT
+model = Fedot(
+    problem='classification',
+    preset='best_quality',  # Options: 'fast', 'stable', 'best_quality', etc.
+    timeout=5,  # Minutes for optimization
+    with_tuning=True,  # Allow tuning mode
+    n_jobs=-1,  # CPU cores to use (-1 = all)
+    cv_folds=5,  # Cross-validation folds
+    seed=42,  # Random seed
+    metric=["accuracy"],  # Set metrics to optimize
+    initial_assumption=PipelineBuilder() \
+    .add_node('catboost', params={"iterations": 10000}).build(),  # Set new initial assumption
+)
+
+```
+
 ## Core Concepts
 - **Pipelines**: Computational graphs that combine data operations and models
 - **Nodes**: Individual operations within a pipeline (preprocessing or models)
@@ -93,28 +115,6 @@ pipeline = PipelineBuilder().add_node('scaling').add_node('xgboost').build()
 Also, you can plot your custom pipeline:
 ```python
 pipeline.show()
-```
-
-## Configuration Options
-```python
-from fedot.api.main import Fedot
-from fedot.core.pipelines.pipeline_builder import PipelineBuilder
-
-
-# Configuring FEDOT
-model = Fedot(
-    problem='classification',
-    preset='best_quality',  # Options: 'fast', 'stable', 'best_quality', etc.
-    timeout=5,  # Minutes for optimization
-    with_tuning=True,  # Allow tuning mode
-    n_jobs=-1,  # CPU cores to use (-1 = all)
-    cv_folds=5,  # Cross-validation folds
-    seed=42,  # Random seed
-    metric=["accuracy"],  # Set metrics to optimize
-    initial_assumption=PipelineBuilder() \
-    .add_node('catboost', params={"iterations": 10000}).build(),  # Set new initial assumption
-)
-
 ```
 
 ## Common Patterns / Recipes
