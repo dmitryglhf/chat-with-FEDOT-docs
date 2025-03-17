@@ -49,7 +49,8 @@ prediction = model.predict(features=X_test)
 ## How does FEDOT pipeline works:
 
 For example we had pipeline like this:
-[some_pipeline](https://github.com/dmitryglhf/chat-with-FEDOT-docs/blob/main/pipeline.png)
+
+<img src="pipeline.png" alt="logo" width="50%"/>
 
 How Prediction Works:
 
@@ -59,7 +60,8 @@ How Prediction Works:
 4. **Final Prediction:** The linear model, as the meta-model, makes the final prediction based on the predictions of the previous models.
 
 You can image it like this:
-[how_some_pipeline_works](https://github.com/dmitryglhf/chat-with-FEDOT-docs/blob/main/pipeline_work.png)
+
+<img src="pipeline_work.png" alt="logo" width="50%"/>
 
 ## Common Methods
 
