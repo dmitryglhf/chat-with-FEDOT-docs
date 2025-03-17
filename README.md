@@ -46,6 +46,21 @@ prediction = model.predict(features=X_test)
 - **Composer**: Algorithm that creates pipeline structures
 - **Tuner**: Optimizes hyperparameters of models in a pipeline
 
+## How does FEDOT pipeline works:
+
+For example we had pipeline like this:
+[some_pipeline](https://github.com/dmitryglhf/chat-with-FEDOT-docs/blob/main/pipeline.png)
+
+How Prediction Works:
+
+1. **First Level:** Initially, feature scaling is performed before feeding the data into each of the nodes.
+2. **Second Level:** Each node sequentially predicts class probabilities. For example, in the s4e6 Kaggle example, there are three classes. Since there are three models at this level, the output is a matrix with nine columns (three probabilities for each model). The first three columns represent class probabilities from CatBoost, the next three are probabilities from XGBoost, and the final three columns are probabilities from LightGBM.
+3. **Third Level:** At this stage, the data passed to the linear model (acting as a meta-model) consists of the predictions from each boosting model, rather than the original features.
+4. **Final Prediction:** The linear model, as the meta-model, makes the final prediction based on the predictions of the previous models.
+
+You can image it like this:
+[how_some_pipeline_works](https://github.com/dmitryglhf/chat-with-FEDOT-docs/blob/main/pipeline_work.png)
+
 ## Common Methods
 
 ### Automatic Pipeline Construction
