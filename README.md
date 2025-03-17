@@ -50,7 +50,7 @@ prediction = model.predict(features=X_test)
 
 For example we had pipeline like this:
 
-<img src="pipeline.png" alt="logo" width="50%"/>
+<img src="pipeline.png" alt="logo" width="75%"/>
 
 How Prediction Works:
 
@@ -61,7 +61,7 @@ How Prediction Works:
 
 You can image it like this:
 
-<img src="pipeline_work.png" alt="logo" width="50%"/>
+<img src="pipeline_work.png" alt="logo" width="75%"/>
 
 ## Common Methods
 
