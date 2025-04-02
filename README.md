@@ -12,7 +12,7 @@ FEDOT is an open-source framework for automated modeling and machine learning (A
 
 It provides automatic generative design of machine learning pipelines for various real-world problems. The core of **FEDOT is based on an evolutionary approach** and supports classification (binary and multiclass), regression, clustering, and time series prediction problems.
 
-[FEDOT Repository](https://github.com/aimclib/FEDOT)
+[FEDOT Repository](https://github.com/aimclub/FEDOT)
 
 ## Link for a Chat Bot
 
@@ -218,5 +218,5 @@ PipelineBuilder().add_node('First node').add_node('Second node!').build().show()
 
 ## Resources
 - [Official Documentation](https://fedot.readthedocs.io/)
-- [GitHub Repository](https://github.com/aimclib/FEDOT)
+- [GitHub Repository](https://github.com/aimclub/FEDOT)
 - [Examples](https://github.com/ITMO-NSS-team/fedot-examples)
