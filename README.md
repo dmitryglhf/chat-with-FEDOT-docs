@@ -12,7 +12,9 @@ FEDOT is an open-source framework for automated modeling and machine learning (A
 
 It provides automatic generative design of machine learning pipelines for various real-world problems. The core of FEDOT is based on an evolutionary approach and supports classification (binary and multiclass), regression, clustering, and time series prediction problems.
 
-## Link for Chat Bot
+[FEDOT Repository](https://github.com/aimclib/FEDOT)
+
+## Link for a Chat Bot
 
 [chat-with-fedot-docs.app](https://chat-with-fedot-docs.streamlit.app/)
 
@@ -59,6 +61,54 @@ model = Fedot(
     .add_node('catboost', params={"iterations": 10000}).build(),  # Set new initial assumption
 )
 
+```
+
+## FEDOT Built-in Data Class
+Using the built-in data class in FEDOT provides several key benefits:
+
+✅ **Consistent Interface**  
+  Simplifies interaction between models and data with a unified, well-tested structure.
+
+✅ **Convenient Utilities**  
+  Includes ready-to-use methods like `train_test_split` for easier data processing.
+
+✅ **Fewer Errors**  
+  Reduces the chances of mistakes during data loading and preparation.
+
+Code examples:
+
+```python
+from fedot.core.data.data import InputData
+from fedot.core.repository.tasks import Task, TaskTypesEnum
+from fedot.core.data.data_split import train_test_data_setup
+
+# from dataframe
+data_from_df = InputData.from_dataframe(
+    features_df=X,
+    target_df=y,
+    task=Task(TaskTypesEnum.classification)
+)
+
+# from .csv
+data_path = 'path_to_data'
+data_from_csv = InputData.from_csv(
+    data_path,
+    target_columns='target',
+    task=Task(TaskTypesEnum.classification)
+)
+
+# from numpy
+data_from_np = InputData.from_numpy(
+    features_array,
+    target_array,
+    task=Task(TaskTypesEnum.classification)
+)
+
+# how to use it:
+train, test = train_test_data_setup(data)
+model = Fedot(problem='classification')
+model.fit(train)
+predictions = model.predict(features=test)
 ```
 
 ## Core Concepts
@@ -116,63 +166,14 @@ Also, you can plot your custom pipeline:
 ```python
 pipeline.show()
 ```
-
-## Common Patterns / Recipes
-
-### Time Series Forecasting
+Note: It's not necessary to specify actual model names when visualizing a pipeline. You can use PipelineBuilder() as a visualization tool by providing any descriptive text in place of real models. However, keep in mind that such a pipeline is intended for illustrative purposes only and will not function as a working machine learning pipeline. For example:
 ```python
-from fedot.api.main import Fedot
-from fedot.core.data.data import InputData
-from fedot.core.data.data_split import train_test_data_setup
-
-# Time series forecasting
-model = Fedot(problem='ts_forecasting', 
-              forecast_length=10)  # Predict 10 steps ahead
-
-# Prepare time series data
-dataframe = pd.read_csv('timeseries_data.csv')
-train_input, test_input = train_test_data_setup(dataframe)
-
-# Fit and forecast
-model.fit(train_input)
-forecast = model.predict(test_input)
-```
-
-### Multi-Modal Data Processing
-```python
-from fedot.core.pipelines.pipeline import Pipeline
-from fedot.core.pipelines.node import PipelineNode
-from fedot.core.data.multi_modal import MultiModalData
-
-# Create nodes for different data types
-text_node = PipelineNode('text_clean')
-tabular_node = PipelineNode('scaling')
-output_node = PipelineNode('rf')
-
-# Create pipeline
-pipeline = Pipeline()
-pipeline.add_node(text_node)
-pipeline.add_node(tabular_node)
-pipeline.add_node(output_node)
-
-# Connect nodes
-pipeline.add_edge(text_node, output_node)
-pipeline.add_edge(tabular_node, output_node)
-
-# Create multi-modal data
-data = MultiModalData({
-    'text': text_data,
-    'tabular': tabular_data
-})
-
-# Fit and predict
-pipeline.fit(data)
-prediction = pipeline.predict(test_data)
+PipelineBuilder().add_node('First node').add_node('Second node!').build().show()
 ```
 
 ## Available Models and Operations
 
-### Primary Nodes (Data Processing)
+### Operaion Nodes (Data Processing)
 - `scaling` - Feature scaling
 - `normalization` - Feature normalization
 - `pca` - Principal Component Analysis
@@ -183,7 +184,7 @@ prediction = pipeline.predict(test_data)
 - `smoothing` - Time series smoothing
 - etc.
 
-### Secondary Nodes (Models)
+### Model Nodes (Models)
 - `linear` - Linear models
 - `ridge` - Ridge regression
 - `lasso` - Lasso regression
@@ -192,8 +193,6 @@ prediction = pipeline.predict(test_data)
 - `lgbm` - LightGBM
 - `catboost` - CatBoost
 - `knn` - K-Nearest Neighbors
-- `dt` - Decision Tree
-- `mlp` - Multi-layer Perceptron
 - etc.
 
 ## Troubleshooting
