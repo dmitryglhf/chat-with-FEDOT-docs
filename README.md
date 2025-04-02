@@ -80,7 +80,18 @@ Code examples:
 ```python
 from fedot.core.data.data import InputData
 from fedot.core.repository.tasks import Task, TaskTypesEnum
+from fedot.core.repository.dataset_types import DataTypesEnum
 from fedot.core.data.data_split import train_test_data_setup
+
+
+# from scratch
+data = InputData(
+    idx=np.arange(0, len(X)),
+    features=X,
+    target=y.values,
+    data_type=DataTypesEnum.table,
+    task=Task(TaskTypesEnum.classification)
+)
 
 # from dataframe
 data_from_df = InputData.from_dataframe(
